@@ -100,20 +100,26 @@ public class DynamicList {
 
   public void deleteMid() {
 
-    DynamicNode current = head;
+    DynamicNode fast = head;
+    DynamicNode slow = head;
 
-    while (current.getNext() != null && current !=null) {
+    if (head == null) {
 
-      if (current.getNext().getNext() == null) {
-        System.out.println("true");
-      } else {
+      System.out.println("error");
+    } else {
 
-        if (current.getNext() == null){
+      try {
+        while (fast.getNext() != null) {
 
-          System.out.println("false");
+          fast = fast.getNext().getNext();
+          slow = slow.getNext();
         }
+
+        System.out.println(slow.getInfo());
+      } catch (Exception e) {
+
+        System.out.println("even");
       }
-      current = current.getNext();
     }
 
   }
