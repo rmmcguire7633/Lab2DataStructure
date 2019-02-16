@@ -1,5 +1,3 @@
-package com.company;
-
 public class DynamicNode {
 
   private Object info;

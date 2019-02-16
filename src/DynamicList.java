@@ -1,4 +1,3 @@
-package com.company;
 
 public class DynamicList {
 
@@ -30,7 +29,7 @@ public class DynamicList {
 
   public void print(){
     if(head==null){
-      System.out.println("null");
+      System.out.println("Empty List:");
     }
     DynamicNode p=head;
     while(p!=null){
@@ -48,11 +47,13 @@ public class DynamicList {
    * Also, it is wrong to (repeatedly) insert new nodes to the list.
    *
    */
-  public boolean appendList(DynamicList firstList, DynamicList secondList) {
+  public boolean appendList( DynamicList secondList) {
 
-    if (!firstList.isEmpty()) {
-      DynamicNode pointer = firstList.head;
+    DynamicNode pointer = head;
 
+    if (pointer != null ) {
+
+      System.out.println("  Append...");
       while (pointer.getNext() != null) {
 
         pointer = pointer.getNext();
@@ -60,14 +61,16 @@ public class DynamicList {
       if (!secondList.isEmpty()) {
 
         pointer.setNext(secondList.head);
+        secondList.print();
         return true;
       } else {
-        System.out.println("There is nothing in the second linked list");
+
         return false;
       }
     }else{
 
-      System.out.println("There is nothing in the first linked list");
+      System.out.println("Reverse Empty list...");
+      System.out.println("Error: List is empty.");
       return false;
     }
   }
@@ -97,30 +100,43 @@ public class DynamicList {
    * Returns: info in the middle node if it exists; null otherwise
    *
    */
-
-  public void deleteMid() {
+  public Object deleteMid() {
 
     DynamicNode fast = head;
     DynamicNode slow = head;
+    DynamicNode previous = null;
 
     if (head == null) {
 
-      System.out.println("error");
+      System.out.println("Error: The list is empty");
+      return null;
     } else {
 
-      try {
-        while (fast.getNext() != null) {
+      while (fast.getNext() != null) {
 
-          fast = fast.getNext().getNext();
-          slow = slow.getNext();
+        previous = slow;
+        slow = slow.getNext();
+        fast = fast.getNext();
+
+        // Checks to see if the next node is not null.
+        // If it is then the dynamic list is an even number.
+        // Example fast starts at index 1 ideally we add two getnext methods to it so it would become index 3.
+        // At first we get the next node in the list once so we can check if it is at the end of the linked list.
+        // If the current node does not have a pointer we are at the end of the list and there fore can not get the
+        // next node because there is no node.
+        // So fast is traversing through the list 2 times faster than slow, ie when fast is 3 slow is 2 and when fast is
+        // 5 slow is 3. You can notice if we do just one getnext method it will turn fast into an even number of indexes.
+        if (fast.getNext() != null) {
+          fast = fast.getNext();
+        }else {
+
+          System.out.println("Error: The list is even, no middle node to remove.");
+          return null;
         }
 
-        System.out.println(slow.getInfo());
-      } catch (Exception e) {
-
-        System.out.println("even");
       }
+      previous.setNext(slow.getNext());
+      return slow.getInfo();
     }
-
   }
 }

@@ -1,4 +1,4 @@
-package com.company;
+
 
 public class Main {
 
@@ -18,11 +18,9 @@ public class Main {
       myList.print();
       myAppendList.print();
 
-      System.out.println("End list: ");
       System.out.println();
 
-      System.out.println("  Append...");
-      myList.appendList(myList, myAppendList);
+      myList.appendList(myAppendList);
       myList.print();
 
       System.out.println();
@@ -32,8 +30,11 @@ public class Main {
       myList.reverse();
       myList.print();
 
-      System.out.println();
       myList.deleteMid();
+
+      System.out.println();
+
+      myList.print();
 
     }
 }
