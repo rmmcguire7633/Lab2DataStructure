@@ -1,4 +1,9 @@
-
+/**
+ * Lab2DataStructure
+ * Author -
+ * Last modified - 02/17/2019
+ * copyright info - n/a
+ * */
 
 public class Main {
 
@@ -23,16 +28,10 @@ public class Main {
       myList.appendList(myAppendList);
       myList.print();
 
-      System.out.println();
-      myList.print();
-      System.out.println("Reverse List....");
-
       myList.reverse();
       myList.print();
 
       myList.deleteMid();
-
-      System.out.println();
 
       myList.print();
 

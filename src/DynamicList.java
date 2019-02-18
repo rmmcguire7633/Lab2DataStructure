@@ -1,3 +1,9 @@
+/**
+ * Lab2DataStructure
+ * Author -
+ * Last modified - 02/17/2019
+ * copyright info - n/a
+ * */
 
 public class DynamicList {
 
@@ -30,10 +36,14 @@ public class DynamicList {
   public void print(){
     if(head==null){
       System.out.println("Empty List:");
+    } else {
+
+      System.out.print("List: ");
     }
     DynamicNode p=head;
+
     while(p!=null){
-      System.out.print(p.getInfo()+((p.getNext()!=null)?"->":""));
+      System.out.print(p.getInfo()+((p.getNext()!=null)?" ":""));
       p=p.getNext();
     }
     System.out.println();
@@ -45,23 +55,29 @@ public class DynamicList {
    * Returns true if the list was changed, false otherwise.
    * Please note that NO new list is created.
    * Also, it is wrong to (repeatedly) insert new nodes to the list.
-   *
+   * @param secondList The list to be appended to the first list.
+   * @return true if both list are appended.
    */
-  public boolean appendList( DynamicList secondList) {
+  public boolean appendList(DynamicList secondList) {
 
     DynamicNode pointer = head;
 
+    // Checks to see if there are no empty list.
     if (pointer != null ) {
 
       System.out.println("  Append...");
+
+      // Sets the pointer to the end of the first list.
       while (pointer.getNext() != null) {
 
         pointer = pointer.getNext();
       }
+
+      // Checks to see if the list to be added is empty.
       if (!secondList.isEmpty()) {
 
+        // adds the list to the end of the first list.
         pointer.setNext(secondList.head);
-        secondList.print();
         return true;
       } else {
 
@@ -69,17 +85,31 @@ public class DynamicList {
       }
     }else{
 
-      System.out.println("Reverse Empty list...");
-      System.out.println("Error: List is empty.");
       return false;
     }
   }
 
+  /**
+   * Reverses the order of the DynamicList.
+   * */
   public void reverse(){
 
+    // Used to point to the current node.
     DynamicNode current = head;
+
+    // Used to point at the node previous to the current node.
     DynamicNode before = null;
 
+    if (head == null) {
+
+      System.out.println("Reverse Empty list...");
+      System.out.println("Error: List is empty.");
+    } else {
+
+      System.out.println("  Reverse list...");
+    }
+
+    // Transverse the list and reverse the order.
     while (current != null) {
 
       DynamicNode next = current.getNext();
@@ -96,22 +126,28 @@ public class DynamicList {
    * Constraint: you cannot use a counter or a boolean.
    * Given a list abcde, c is deleted
    * Given a list abcd, nothing is deleted.
-   *
-   * Returns: info in the middle node if it exists; null otherwise
-   *
+   * @Returns - info in the middle node if it exists; null otherwise
    */
   public Object deleteMid() {
 
+    // Used to to reach the end of the list.
     DynamicNode fast = head;
+
+    // Used to read the middle of the list.
     DynamicNode slow = head;
+
+    // Used to read the previous node from the slow node.
     DynamicNode previous = null;
 
+    // Checks to see if the list empty.
     if (head == null) {
 
+      System.out.println("Delete mid in Empty List...");
       System.out.println("Error: The list is empty");
       return null;
     } else {
 
+      System.out.println("  Delete mid...");
       while (fast.getNext() != null) {
 
         previous = slow;
@@ -135,6 +171,8 @@ public class DynamicList {
         }
 
       }
+
+      // deletes the middle row
       previous.setNext(slow.getNext());
       return slow.getInfo();
     }

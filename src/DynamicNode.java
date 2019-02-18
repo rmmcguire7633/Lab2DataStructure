@@ -1,3 +1,10 @@
+/**
+ * Lab2DataStructure
+ * Author -
+ * Last modified - 02/17/2019
+ * copyright info - n/a
+ * */
+
 public class DynamicNode {
 
   private Object info;
